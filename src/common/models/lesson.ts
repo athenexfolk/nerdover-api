@@ -35,11 +35,3 @@ export const UpdateLessonSchema = z
     cover: z.string(),
   })
   .partial();
-
-export const GetLessonRequestSchema = z.object({
-  params: z.object({ slug: slugSchema }),
-});
-
-export const CreateLessonRequestSchema = z.object({
-  body: CreateLessonSchema,
-});

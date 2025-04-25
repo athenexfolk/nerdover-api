@@ -8,10 +8,13 @@ import {
   Post,
   Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import type { Response } from 'express';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('feature')
 export class FeatureController {
   constructor(private readonly featureService: FeatureService) {}

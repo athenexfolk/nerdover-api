@@ -6,15 +6,17 @@ import { Readable } from 'stream';
 @Injectable()
 export class FirebaseRepository {
   #db: FirebaseFirestore.Firestore;
+  bucket: Bucket;
   categories: FirebaseFirestore.CollectionReference;
   lessons: FirebaseFirestore.CollectionReference;
-  bucket: Bucket;
+  users: FirebaseFirestore.CollectionReference;
 
   constructor(@Inject('FIREBASE_APP') firebaseApp: app.App) {
     this.#db = firebaseApp.firestore();
-    this.categories = this.#db.collection('category');
     this.bucket = firebaseApp.storage().bucket();
+    this.categories = this.#db.collection('category');
     this.lessons = this.#db.collection('lesson');
+    this.users = this.#db.collection('user');
   }
 
   async uploadMarkdownToBucket(path: string, content: string): Promise<string> {

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { ZodPipe } from 'src/common/pipes/zod.pipe';
@@ -17,7 +18,9 @@ import {
   type UpdateCategoryDto,
 } from 'src/common/models/category';
 import { slugSchema } from 'src/common/models/base';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}

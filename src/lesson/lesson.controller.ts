@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { LessonService } from './lesson.service';
 import {
@@ -17,7 +18,9 @@ import {
 } from 'src/common/models/lesson';
 import { ZodPipe } from 'src/common/pipes/zod.pipe';
 import { slugSchema } from 'src/common/models/base';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('lesson')
 export class LessonController {
   constructor(private readonly lessonService: LessonService) {}
